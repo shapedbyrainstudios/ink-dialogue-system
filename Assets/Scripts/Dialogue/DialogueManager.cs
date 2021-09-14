@@ -72,7 +72,6 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
 
         ContinueStory();
-        StartCoroutine(SelectFirstChoice());
     }
 
     private IEnumerator ExitDialogueMode() 
@@ -123,6 +122,8 @@ public class DialogueManager : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
+
+        StartCoroutine(SelectFirstChoice());
     }
 
     private IEnumerator SelectFirstChoice() 
