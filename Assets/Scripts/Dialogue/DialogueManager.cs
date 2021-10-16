@@ -189,7 +189,8 @@ public class DialogueManager : MonoBehaviour
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
-        // NOTE: The below line was added to fix a bug after the Youtube video was made
+        // NOTE: The below two lines were added to fix a bug after the Youtube video was made
+        InputManager.GetInstance().RegisterSubmitPressed(); // this is specific to my InputManager script
         ContinueStory();
     }
 
