@@ -7,9 +7,12 @@ using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Params")]
+    [SerializeField] private float typingSpeed = 0.04f;
 
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private GameObject continueIcon;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI displayNameText;
     [SerializeField] private Animator portraitAnimator;
@@ -21,6 +24,10 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
+
+    private bool canContinueToNextLine = false;
+
+    private Coroutine displayLineCoroutine;
 
     private static DialogueManager instance;
 
@@ -70,7 +77,9 @@ public class DialogueManager : MonoBehaviour
 
         // handle continuing to the next line in the dialogue when submit is pressed
         // NOTE: The 'currentStory.currentChoiecs.Count == 0' part was to fix a bug after the Youtube video was made
-        if (currentStory.currentChoices.Count == 0 && InputManager.GetInstance().GetSubmitPressed())
+        if (canContinueToNextLine 
+            && currentStory.currentChoices.Count == 0 
+            && InputManager.GetInstance().GetSubmitPressed())
         {
             ContinueStory();
         }
@@ -104,15 +113,72 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue) 
         {
             // set text for the current dialogue line
-            dialogueText.text = currentStory.Continue();
-            // display choices, if any, for this dialogue line
-            DisplayChoices();
+            if (displayLineCoroutine != null) 
+            {
+                StopCoroutine(displayLineCoroutine);
+            }
+            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
             // handle tags
             HandleTags(currentStory.currentTags);
         }
         else 
         {
             StartCoroutine(ExitDialogueMode());
+        }
+    }
+
+    private IEnumerator DisplayLine(string line) 
+    {
+        // empty the dialogue text
+        dialogueText.text = "";
+        // hide items while text is typing
+        continueIcon.SetActive(false);
+        HideChoices();
+
+        canContinueToNextLine = false;
+
+        bool isAddingRichTextTag = false;
+
+        // display each letter one at a time
+        foreach (char letter in line.ToCharArray())
+        {
+            // if the submit button is pressed, finish up displaying the line right away
+            if (InputManager.GetInstance().GetSubmitPressed()) 
+            {
+                dialogueText.text = line;
+                break;
+            }
+
+            // check for rich text tag, if found, add it without waiting
+            if (letter == '<' || isAddingRichTextTag) 
+            {
+                isAddingRichTextTag = true;
+                dialogueText.text += letter;
+                if (letter == '>')
+                {
+                    isAddingRichTextTag = false;
+                }
+            }
+            // if not rich text, add the next letter and wait a small time
+            else 
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+        }
+
+        // actions to take after the entire line has finished displaying
+        continueIcon.SetActive(true);
+        DisplayChoices();
+
+        canContinueToNextLine = true;
+    }
+
+    private void HideChoices() 
+    {
+        foreach (GameObject choiceButton in choices) 
+        {
+            choiceButton.SetActive(false);
         }
     }
 
@@ -188,10 +254,13 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)
     {
-        currentStory.ChooseChoiceIndex(choiceIndex);
-        // NOTE: The below two lines were added to fix a bug after the Youtube video was made
-        InputManager.GetInstance().RegisterSubmitPressed(); // this is specific to my InputManager script
-        ContinueStory();
+        if (canContinueToNextLine) 
+        {
+            currentStory.ChooseChoiceIndex(choiceIndex);
+            // NOTE: The below two lines were added to fix a bug after the Youtube video was made
+            InputManager.GetInstance().RegisterSubmitPressed(); // this is specific to my InputManager script
+            ContinueStory();
+        }
     }
 
 }

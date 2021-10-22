@@ -452,7 +452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bffb575d8cdcf42ba34ef7f5c34fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typingSpeed: 0.04
   dialoguePanel: {fileID: 2062698336}
+  continueIcon: {fileID: 1126160114}
   dialogueText: {fileID: 1535608625}
   displayNameText: {fileID: 1420930866}
   portraitAnimator: {fileID: 1545818431}
@@ -1721,7 +1723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: <color=#40FF6E>Some</color> Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
