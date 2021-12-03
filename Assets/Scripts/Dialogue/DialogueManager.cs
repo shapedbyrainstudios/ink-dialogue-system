@@ -4,11 +4,15 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using Ink.UnityIntegration;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Params")]
     [SerializeField] private float typingSpeed = 0.04f;
+
+    [Header("Globals Ink File")]
+    [SerializeField] private InkFile globalsInkFile;
 
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
@@ -35,6 +39,8 @@ public class DialogueManager : MonoBehaviour
     private const string PORTRAIT_TAG = "portrait";
     private const string LAYOUT_TAG = "layout";
 
+    private DialogueVariables dialogueVariables;
+
     private void Awake() 
     {
         if (instance != null)
@@ -42,6 +48,8 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Found more than one Dialogue Manager in the scene");
         }
         instance = this;
+
+        dialogueVariables = new DialogueVariables(globalsInkFile.filePath);
     }
 
     public static DialogueManager GetInstance() 
@@ -91,6 +99,8 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
+        dialogueVariables.StartListening(currentStory);
+
         // reset portrait, layout, and speaker
         displayNameText.text = "???";
         portraitAnimator.Play("default");
@@ -102,6 +112,8 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator ExitDialogueMode() 
     {
         yield return new WaitForSeconds(0.2f);
+
+        dialogueVariables.StopListening(currentStory);
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
@@ -261,6 +273,17 @@ public class DialogueManager : MonoBehaviour
             InputManager.GetInstance().RegisterSubmitPressed(); // this is specific to my InputManager script
             ContinueStory();
         }
+    }
+
+    public Ink.Runtime.Object GetVariableState(string variableName) 
+    {
+        Ink.Runtime.Object variableValue = null;
+        dialogueVariables.variables.TryGetValue(variableName, out variableValue);
+        if (variableValue == null) 
+        {
+            Debug.LogWarning("Ink Variable was found to be null: " + variableName);
+        }
+        return variableValue;
     }
 
 }
