@@ -453,20 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typingSpeed: 0.04
-  globalsInkFile:
-    compileAutomatically: 0
-    inkAsset: {fileID: 102900000, guid: 44c7a3b4e7252ac4a85c4730a29a1722, type: 3}
-    jsonAssetDirectory: {fileID: 0}
-    jsonAsset: {fileID: 0}
-    unhandledCompileErrors: []
-    errors: []
-    warnings: []
-    todos: []
-    parents: []
-    masterInkAssets: []
-    masterInkAsset: {fileID: 0}
-    includePaths: []
-    includes: []
+  globalsInkFilePath: Assets/Dialogue/globals.ink
   dialoguePanel: {fileID: 2062698336}
   continueIcon: {fileID: 1126160114}
   dialogueText: {fileID: 1535608625}
