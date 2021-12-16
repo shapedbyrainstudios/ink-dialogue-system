@@ -8,21 +8,13 @@ public class DialogueVariables
 {
     public Dictionary<string, Ink.Runtime.Object> variables { get; private set; }
 
-    public DialogueVariables(string globalsFilePath) 
+    public DialogueVariables() 
     {
-        // compile the story
-        string inkFileContents = File.ReadAllText(globalsFilePath);
-        Ink.Compiler compiler = new Ink.Compiler(inkFileContents);
-        Story globalVariablesStory = compiler.Compile();
-
-        // initialize the dictionary
+        // initialize the dictionary with all global variables
         variables = new Dictionary<string, Ink.Runtime.Object>();
-        foreach (string name in globalVariablesStory.variablesState)
-        {
-            Ink.Runtime.Object value = globalVariablesStory.variablesState.GetVariableWithName(name);
-            variables.Add(name, value);
-            Debug.Log("Initialized global dialogue variable: " + name + " = " + value);
-        }
+        // initialize the variable 'pokemon_name' as a string, 
+        // which should match the globals ink file. Use BoolValue, FloatValue, etc.. for different types
+        variables.Add("pokemon_name", new Ink.Runtime.StringValue(""));
     }
 
     public void StartListening(Story story) 

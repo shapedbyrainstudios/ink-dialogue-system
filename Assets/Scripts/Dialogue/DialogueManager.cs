@@ -10,9 +10,6 @@ public class DialogueManager : MonoBehaviour
     [Header("Params")]
     [SerializeField] private float typingSpeed = 0.04f;
 
-    [Header("Globals Ink File")]
-    [SerializeField] private string globalsInkFilePath;
-
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private GameObject continueIcon;
@@ -48,7 +45,7 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
 
-        dialogueVariables = new DialogueVariables(globalsInkFilePath);
+        dialogueVariables = new DialogueVariables();
     }
 
     public static DialogueManager GetInstance() 
