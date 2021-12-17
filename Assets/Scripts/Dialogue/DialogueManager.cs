@@ -10,6 +10,9 @@ public class DialogueManager : MonoBehaviour
     [Header("Params")]
     [SerializeField] private float typingSpeed = 0.04f;
 
+    [Header("Load Globals JSON")]
+    [SerializeField] private TextAsset loadGlobalsJSON;
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private GameObject continueIcon;
@@ -45,7 +48,7 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
 
-        dialogueVariables = new DialogueVariables();
+        dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
 
     public static DialogueManager GetInstance() 
