@@ -4,6 +4,22 @@ using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 
+/// <summary>
+/// Creates a new tab under Tools/Dialog System called
+/// Face Animation Generator. This tab opens up a new
+/// Editor Window for the user to type in the name
+/// of their new character, prefably using spaces
+/// for when the name needs to split up into multiple
+/// words. Below the name input field is an expandable
+/// list of sprites and Names. The name value is to hold
+/// the name of the expression such as mad, sad,glad,neutral,etc...
+/// After the button is pressed, a new folder is created
+/// with the characters name under "Assets/Animations/Portraits".
+/// Inside is the new animation clips generated.
+/// And the Portrait Animator controller ,which is assumed
+/// to be located at Assets/Animations/Portaits/PortraitAnimator.controller,
+/// automatically has the new clip added. 
+/// </summary>
 public class FaceAnimationGenerator : EditorWindow
 {
   public string CharacterName;
@@ -61,7 +77,7 @@ public class FaceAnimationGenerator : EditorWindow
     spriteBinding.type = typeof( SpriteRenderer );
     spriteBinding.path = "";
     spriteBinding.propertyName = "m_Sprite";
-    ObjectReferenceKeyframe[] spriteKeyFrames = new ObjectReferenceKeyframe[5];
+    ObjectReferenceKeyframe[] spriteKeyFrames = new ObjectReferenceKeyframe[1];
     spriteKeyFrames[0] = new ObjectReferenceKeyframe();
     spriteKeyFrames[0].time = 0;
     spriteKeyFrames[0].value = faceSprite;
