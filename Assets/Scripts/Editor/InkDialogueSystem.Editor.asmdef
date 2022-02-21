@@ -1,7 +1,9 @@
 {
-    "name": "InkDialogSystem.Editor",
+    "name": "InkDialogueSystem.Editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:15a55877d07ba8543adfba961db4ba40"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

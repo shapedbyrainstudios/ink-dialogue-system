@@ -1,10 +1,10 @@
 {
-    "name": "InkDialogSystem.PlayModeTests",
+    "name": "InkDialogueSystem.PlayModeTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Ink-Dialog-System"
+        "InkDialogueSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
