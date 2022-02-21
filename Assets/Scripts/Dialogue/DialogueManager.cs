@@ -193,7 +193,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void HandleTags(List<string> currentTags)
+    protected virtual void HandleTags(List<string> currentTags)
     {
         // loop through each tag and handle it accordingly
         foreach (string tag in currentTags) 
@@ -271,6 +271,20 @@ public class DialogueManager : MonoBehaviour
             // NOTE: The below two lines were added to fix a bug after the Youtube video was made
             InputManager.GetInstance().RegisterSubmitPressed(); // this is specific to my InputManager script
             ContinueStory();
+        }
+    }
+
+
+    public void SetVariableState(string variableName, Ink.Runtime.Object variableValue)
+    {
+        if (dialogueVariables.variables.ContainsKey(variableName))
+        {
+            dialogueVariables.variables.Remove(variableName);
+            dialogueVariables.variables.Add(variableName, variableValue);
+        }
+        else
+        {
+            Debug.LogWarning("Tried to update variable that wasn't initialized by globals.ink: " + variableName);
         }
     }
 
