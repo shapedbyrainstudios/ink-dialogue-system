@@ -3,6 +3,7 @@ INCLUDE globals.ink
 { pokemon_name == "": -> main | -> already_chose }
 
 === main ===
+#audio:animal_crossing_low
 Which pokemon do you choose?
     + [Charmander]
         -> chosen("Charmander")

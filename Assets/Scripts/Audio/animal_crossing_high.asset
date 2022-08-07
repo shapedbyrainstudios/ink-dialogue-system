@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187eef24270cf2c43a96c6da47e7fa7d, type: 3}
+  m_Name: animal_crossing_high
+  m_EditorClassIdentifier: 
+  id: animal_crossing_high
+  dialogueTypingSoundClips:
+  - {fileID: 8300000, guid: f7507f9aebfa98b409b02c2ca8c463f2, type: 3}
+  - {fileID: 8300000, guid: 2ec4cccb92c9b9e41b200604b7369c26, type: 3}
+  - {fileID: 8300000, guid: 2c9ba4d542d1bc946b29b76cde154976, type: 3}
+  - {fileID: 8300000, guid: c2c32706459a553498320dad0ff33793, type: 3}
+  - {fileID: 8300000, guid: 396ee13792631444c91de3b77986a3cf, type: 3}
+  - {fileID: 8300000, guid: bb619f478c51c9a4d9d0250b61f71e0e, type: 3}
+  frequencyLevel: 2
+  minPitch: 2
+  maxPitch: 2.25
+  stopAudioSource: 1
