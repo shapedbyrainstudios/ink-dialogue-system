@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187eef24270cf2c43a96c6da47e7fa7d, type: 3}
+  m_Name: celeste_high
+  m_EditorClassIdentifier: 
+  id: celeste_high
+  dialogueTypingSoundClips:
+  - {fileID: 8300000, guid: 9742e1a37de75474f88e11179b841115, type: 3}
+  - {fileID: 8300000, guid: 02df25240932ff845aa779f7e10cfa4b, type: 3}
+  - {fileID: 8300000, guid: 86c21c1964e73e74aa6c3fe73da51a22, type: 3}
+  - {fileID: 8300000, guid: 7b85775c3707a6a4b863f61bb920a97a, type: 3}
+  - {fileID: 8300000, guid: ca3a803d25956ff4582d429efdd1c382, type: 3}
+  - {fileID: 8300000, guid: ce101063703b36042a1677f4aa7f5d05, type: 3}
+  - {fileID: 8300000, guid: 92562bfd85e36dd4aabc204f87d5dd0a, type: 3}
+  - {fileID: 8300000, guid: 4a9e2f578e0d1bb499bcf1baccef0ddf, type: 3}
+  - {fileID: 8300000, guid: 63a670cd6fad36b4b8c92423bfd27071, type: 3}
+  - {fileID: 8300000, guid: 85c22b9cc9eac4c459419512563566e4, type: 3}
+  - {fileID: 8300000, guid: 2ea92f81263b83740bf6443e5a9931bb, type: 3}
+  - {fileID: 8300000, guid: 3e664322d15693a4ebdf5a23cb700372, type: 3}
+  - {fileID: 8300000, guid: cc12129f0509c5d4d8a67bdb81598b24, type: 3}
+  - {fileID: 8300000, guid: c6b81e40662c9524191cf862d416b7de, type: 3}
+  - {fileID: 8300000, guid: dc98b4506b2ed8b42addbb6ede93a07d, type: 3}
+  - {fileID: 8300000, guid: 5903bc11b4d73c84d845d03195b729ee, type: 3}
+  - {fileID: 8300000, guid: d846c9f17a937004a9b1b5ec128e686d, type: 3}
+  - {fileID: 8300000, guid: 945e0fea845119a428c86e739ef83d55, type: 3}
+  - {fileID: 8300000, guid: abf62d3b21b2c0049a52bbc447ad7352, type: 3}
+  - {fileID: 8300000, guid: e5867ea8ec5a47a459f98c7188381b9e, type: 3}
+  - {fileID: 8300000, guid: 2e25d240689acdc4aa5acc29c1ca47e1, type: 3}
+  frequencyLevel: 4
+  minPitch: 0.9
+  maxPitch: 1.1
+  stopAudioSource: 1
