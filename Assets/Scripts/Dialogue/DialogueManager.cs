@@ -48,6 +48,7 @@ public class DialogueManager : MonoBehaviour
     private const string AUDIO_TAG = "audio";
 
     private DialogueVariables dialogueVariables;
+    private InkExternalFunctions inkExternalFunctions;
 
     private void Awake() 
     {
@@ -58,6 +59,7 @@ public class DialogueManager : MonoBehaviour
         instance = this;
 
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
+        inkExternalFunctions = new InkExternalFunctions();
 
         audioSource = this.gameObject.AddComponent<AudioSource>();
         currentAudioInfo = defaultAudioInfo;
@@ -130,13 +132,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON) 
+    public void EnterDialogueMode(TextAsset inkJSON, Animator emoteAnimator) 
     {
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
         dialogueVariables.StartListening(currentStory);
+        inkExternalFunctions.Bind(currentStory, emoteAnimator);
 
         // reset portrait, layout, and speaker
         displayNameText.text = "???";
@@ -151,6 +154,7 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         dialogueVariables.StopListening(currentStory);
+        inkExternalFunctions.Unbind(currentStory);
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
@@ -170,9 +174,18 @@ public class DialogueManager : MonoBehaviour
                 StopCoroutine(displayLineCoroutine);
             }
             string nextLine = currentStory.Continue();
-            // handle tags
-            HandleTags(currentStory.currentTags);
-            displayLineCoroutine = StartCoroutine(DisplayLine(nextLine));
+            // handle case where the last line is an external function
+            if (nextLine.Equals("") && !currentStory.canContinue)
+            {
+                StartCoroutine(ExitDialogueMode());
+            }
+            // otherwise, handle the normal case for continuing the story
+            else 
+            {
+                // handle tags
+                HandleTags(currentStory.currentTags);
+                displayLineCoroutine = StartCoroutine(DisplayLine(nextLine));
+            }
         }
         else 
         {

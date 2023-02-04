@@ -7,6 +7,9 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Visual Cue")]
     [SerializeField] private GameObject visualCue;
 
+    [Header("Emote Animator")]
+    [SerializeField] private Animator emoteAnimator;
+
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
@@ -25,7 +28,7 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (InputManager.GetInstance().GetInteractPressed()) 
             {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+                DialogueManager.GetInstance().EnterDialogueMode(inkJSON, emoteAnimator);
             }
         }
         else 
