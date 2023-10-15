@@ -1,9 +1,9 @@
 # Ink + Unity Dialogue System
 
-This is a sample project to show a simple integration of Ink and Unity.
+This is a sample project that shows one way of integrating Ink and Unity to build a Dialogue System.
 
-The branches in this repo follow implementation for the video series where these are implemented in a step by step manner. The video series can be found at the below link.
+The branches in this repo follow the implementation for the video series. Each branch represents the state of the system for a given video. The videos can be found on the below YouTube channel.
 
-https://www.youtube.com/watch?v=KSRpcftVyKg&list=PL3viUl9h9k78KsDxXoAzgQ1yRjhm7p8kl
+`youtube.com/@ShapedByRainStudios`
 
-Please feel free to take anything from this example and use it however you'd like!
+Please feel free to take the system from this example and use it however you'd like!
